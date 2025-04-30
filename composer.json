@@ -1,0 +1,6 @@
+{
+    "name": "your-app/backend",
+    "require": {
+      "firebase/php-jwt": "^6.4"
+    }
+  }
