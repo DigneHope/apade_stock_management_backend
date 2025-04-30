@@ -3,7 +3,7 @@ services:
     name: apade-backend # Choose a name for your service
     runtime: php # Specify the PHP runtime
     buildCommand: composer install --no-dev --optimize-autoloader
-    startCommand: php -S 0.0.0.0:$PORT -t public # Adjust your start command as needed (e.g., for Laravel or other frameworks)
+    startCommand: php -S 127.0.0.1:5000 -t public # Adjust your start command as needed (e.g., for Laravel or other frameworks)
     envVars:
       - key: DB_HOST
         value: ${DB_HOST}
