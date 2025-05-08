@@ -1,29 +1,31 @@
 <?php
-// Database credentials
-$host = "localhost";
-$db_name = "apade_stock_management";
-$username = "root";
-$password = "";
 
-/**
- * Function to establish a database connection
- * 
- * @return mysqli
- */
+$host = 'localhost';
+$dbname = 'apade_stock_management';
+$username = 'root';
+$password = '';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo json_encode(["success" => false, "message" => "Database connection failed: " . $e->getMessage()]);
+    exit;
+}
+
+
 function getDatabaseConnection() {
-    global $host, $username, $password, $db_name;
+    $host = 'localhost';
+    $dbname = 'apade_stock_management';
+    $username = 'root';
+    $password = '';
 
-    // Create connection
-    $conn = new mysqli($host, $username, $password, $db_name);
+    $conn = new mysqli($host, $username, $password, $dbname);
 
-    // Check connection
     if ($conn->connect_error) {
-        error_log("Database connection failed: " . $conn->connect_error); // Log the error
-        return false; // Return false on connection failure
+        die(json_encode(["success" => false, "message" => "Database connection failed: " . $conn->connect_error]));
     }
 
     return $conn;
 }
-
-// Example usage
-// $conn = getDatabaseConnection();
+?>

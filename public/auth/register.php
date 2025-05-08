@@ -21,7 +21,7 @@ if (!$email || !$password) {
 $checkStmt = $conn->prepare("SELECT user_id FROM users WHERE email = ?");
 
 if (!$checkStmt) {
-    // Output the specific mysqli error message
+   
     echo json_encode(['success' => false, 'message' => 'Error preparing statement: ' . $conn->error]);
     exit;
 }
@@ -39,7 +39,7 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 $insertStmt = $conn->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
 
 if (!$insertStmt) {
-    // Output the specific mysqli error message
+    
     echo json_encode(['success' => false, 'message' => 'Error preparing insert statement: ' . $conn->error]);
     exit;
 }
